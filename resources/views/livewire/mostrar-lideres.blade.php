@@ -9,7 +9,7 @@
             </div>
             <a href="" class=" block bg-orange-600 hover:bg-orange-700 text-white font-bold p-2 rounded "> Ver
                 Votantes</a>
-            <a href="{{ route('lideres.edit',  $lider) }}"
+            <a href="{{ route('lideres.edit', $lider) }}"
                 class=" mt-2 block bg-blue-600 hover:bg-blue-700 text-white font-bold p-2 rounded ">
                 Editar</a>
         </div>
@@ -17,5 +17,5 @@
     @empty
         <p class="font-bold text-center"> Sin Lideres Por el momento</p>
     @endforelse
-
+    {{ $lideres->links() }}
 </div>

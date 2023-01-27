@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LideresController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VotantesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/lideres', [LideresController::class, 'index'])->name('lideres.index');
+Route::get('/lideres', [LideresController::class, 'index'])->name('lideres.index')->middleware(['auth']);
 Route::get('/lideres/create', [LideresController::class, 'create'])->name('lideres.create')->middleware(['auth']);
 Route::get('/lideres/{lider}/edit', [LideresController::class, 'edit'])->name('lideres.edit')->middleware(['auth']);
+
+Route::get('/votantes', [VotantesController::class, 'index'])->name('votantes.index')->middleware(['auth']);
+Route::get('/votantes/create', [VotantesController::class, 'create'])->name('votantes.create')->middleware(['auth']);
+Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
 
 
 

@@ -17,16 +17,6 @@ class EditarLider extends Component
     public $telefono;
     public $cedula;
 
-    // protected $rules = [
-    //     'nombre' => ['required'],
-    //     'apellido' => ['required'],
-    //     'email' => ['required', 'email', 'unique:lideres,correo' . "$this->id_lider"],
-    //     'telefono' => 'required|digits:10',
-    //     'cedula' => ['required', 'max:12'],
-    // ];
-
-
-
 
     public function mount($lider)
     {
