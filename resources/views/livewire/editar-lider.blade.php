@@ -1,12 +1,12 @@
 <div class="md:flex justify-center">
 
-    <form class="md:w-1/2" novalidate wire:submit.prevent="create">
-   
+    <form class="md:w-1/2" novalidate wire:submit.prevent="update">
+
 
         <!-- Name -->
         <div>
             <x-input-label for="nombre" :value="__('Nombre')" />
-            <x-text-input id="nombre" wire:model="nombre" class="block mt-1 w-full" type="text" nombre="nombre"
+            <x-text-input id="nombre" wire:model="nombre"  wire:model.lazy="nombre" class="block mt-1 w-full" type="text" nombre="nombre"
                 :value="old('nombre')" required autofocus />
             <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
         </div>
@@ -45,9 +45,9 @@
             <input type="file" id="imagen" wire:model="imagen" name="imagen">
             <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
             <div class="md:w-80">
-                @if ($imagen)
+                {{-- @if ($imagen)
                     Image Preview: <img src="{{ $imagen->temporaryUrl() }}">
-                @endif
+                @endif --}}
             </div>
         </div>
 

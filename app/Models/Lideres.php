@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lideres extends Model
 {
+
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'correo',
+        'telefono',
+        'cedula',
+        'imagen',
+    ];
     use HasFactory;
 }

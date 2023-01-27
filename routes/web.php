@@ -20,7 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/lideres', [LideresController::class, 'index'])->name('lideres.index');
-Route::get('/lideres/create', [LideresController::class, 'create'])->name('lideres.create');
+Route::get('/lideres/create', [LideresController::class, 'create'])->name('lideres.create')->middleware(['auth']);
+Route::get('/lideres/{lider}/edit', [LideresController::class, 'edit'])->name('lideres.edit')->middleware(['auth']);
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
