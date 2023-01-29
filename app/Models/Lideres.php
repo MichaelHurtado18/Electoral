@@ -16,5 +16,11 @@ class Lideres extends Model
         'cedula',
         'imagen',
     ];
+
+
+    public function votante()
+    {
+        return $this->hasMany(Votantes::class, 'lider_id');
+    }
     use HasFactory;
 }

@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LideresController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\VotantesController;
+use App\Http\Resources\VotantesResource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,20 +23,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+// Rutas Lideres
 Route::get('/lideres', [LideresController::class, 'index'])->name('lideres.index')->middleware(['auth']);
 Route::get('/lideres/create', [LideresController::class, 'create'])->name('lideres.create')->middleware(['auth']);
 Route::get('/lideres/{lider}/edit', [LideresController::class, 'edit'])->name('lideres.edit')->middleware(['auth']);
-
+Route::get('/lideres/{lider}', [LideresController::class, 'show'])->name('lideres.show')->middleware(['auth']);
+// Rutas Votantes
 Route::get('/votantes', [VotantesController::class, 'index'])->name('votantes.index')->middleware(['auth']);
 Route::get('/votantes/create', [VotantesController::class, 'create'])->name('votantes.create')->middleware(['auth']);
 Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
+Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
+// Rutas Puestos
+Route::get('/puestos', [PuestosController::class, 'index'])->name('puestos.index')->middleware(['auth']);
 
 
+// Route::get('/api',);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/api/grafica', [HomeController::class, 'getGrafica'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

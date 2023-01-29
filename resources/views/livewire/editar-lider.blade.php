@@ -6,7 +6,7 @@
         <!-- Name -->
         <div>
             <x-input-label for="nombre" :value="__('Nombre')" />
-            <x-text-input id="nombre" wire:model="nombre"   class="block mt-1 w-full" type="text" nombre="nombre"
+            <x-text-input id="nombre" wire:model="nombre" class="block mt-1 w-full" type="text" nombre="nombre"
                 :value="old('nombre')" required autofocus />
             <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
         </div>
@@ -41,13 +41,15 @@
         </div>
 
         <div class="mt-4">
-            <x-input-label for="imagen" :value="__('imagen')" />
-            <input type="file" id="imagen" wire:model="imagen" name="imagen">
-            <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
-            <div class="md:w-80">
-                {{-- @if ($imagen)
-                    Image Preview: <img src="{{ $imagen->temporaryUrl() }}">
-                @endif --}}
+            <x-input-label for="nueva_imagen" :value="__('nueva imagen')" />
+            <input type="file" id="nueva_imagen" wire:model="nueva_imagen" name="nueva_imagen">
+            <x-input-error :messages="$errors->get('nueva_imagen')" class="mt-2" />
+                <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+            <div class="flex md:w-40">
+
+                @if ($nueva_imagen)
+                    <img src="{{ $nueva_imagen->temporaryUrl() }}">
+                @endif
             </div>
         </div>
 

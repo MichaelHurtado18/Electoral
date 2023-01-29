@@ -7,4 +7,9 @@ use Illuminate\Http\Request;
 class PuestosController extends Controller
 {
     //
+
+    public function index()
+    {
+        dd('DESDE PUESTPS000');
+    }
 }

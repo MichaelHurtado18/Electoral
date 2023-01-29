@@ -21,7 +21,12 @@ class LideresController extends Controller
 
     public function edit(Lideres $lider)
     {
-        
+
         return view('lideres.edit', ['lider' => $lider]);
+    }
+
+    public function show(Lideres $lider)
+    {
+        return view('lideres.show', ["lider" => $lider]);
     }
 }

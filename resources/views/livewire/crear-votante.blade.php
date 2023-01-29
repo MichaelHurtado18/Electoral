@@ -73,9 +73,9 @@
             <input type="file" id="imagen" wire:model="imagen" name="imagen">
             <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
             <div class="md:w-80">
-                {{-- @if ($imagen)
+                @if ($imagen)
                     Image Preview: <img src="{{ $imagen->temporaryUrl() }}">
-                @endif --}}
+                @endif
             </div>
         </div>
 
@@ -94,4 +94,3 @@
         </div>
     </form>
 </div>
-X

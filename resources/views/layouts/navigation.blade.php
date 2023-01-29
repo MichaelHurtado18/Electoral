@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('votantes.index')" :active="request()->routeIs('votantes.index')">
                         {{ __(' Votantes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('puestos.index')" :active="request()->routeIs('puestos.index')">
+                        {{ __(' Puestos') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -52,7 +55,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -81,6 +84,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('lideres.index')" :active="request()->routeIs('lideres.index')">
+                {{ __('Lideres') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('votantes.index')" :active="request()->routeIs('votantes.index')">
+                {{ __(' Votantes') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -102,7 +111,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Cerrar Sesión') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

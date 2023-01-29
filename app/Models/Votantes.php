@@ -18,5 +18,7 @@ class Votantes extends Model
         'puesto_id',
         'lider_id'
     ];
+
+   
     use HasFactory;
 }

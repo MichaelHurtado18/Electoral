@@ -49,6 +49,7 @@
                     Image Preview: <img src="{{ $imagen->temporaryUrl() }}">
                 @endif
             </div>
+            <div wire:loading wire:target="photo">Uploading...</div>
         </div>
 
         <div class="flex items-center justify-end mt-4">

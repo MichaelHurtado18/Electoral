@@ -1,17 +1,19 @@
 <div class="grid md:grid-cols-4 gap-4 ">
     @forelse($lideres as $lider)
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-5">
-            <div>
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
+            <div >
+                <img src="{{  $lider->imagen != '' ? asset("storage/lideres/$lider->imagen" ) :  asset("storage/lideres/user.png" )   }}" alt="Imagen {{ $lider->nombre }}">
                 <p class="font-bold text-xl"> {{ $lider->nombre . ' ' . $lider->apellido }}</p>
                 <p> <span class="font-bold"> Correo: </span> {{ $lider->correo }}</p>
                 <p> <span class="font-bold">Celular: </span>{{ $lider->telefono }}</p>
                 <p> <span class="font-bold">Cedula:</span> {{ $lider->cedula }}</p>
             </div>
-            <a href="" class=" block bg-orange-600 hover:bg-orange-700 text-white font-bold p-2 rounded "> Ver
+            <a href="{{ route('lideres.show', $lider) }}"
+                class=" block bg-orange-600 hover:bg-orange-700 text-white font-bold p-2 rounded "> Ver
                 Votantes</a>
-            <a href="{{ route('lideres.edit', $lider) }}"
+            {{-- <a href="{{ route('lideres.edit', $lider) }}"
                 class=" mt-2 block bg-blue-600 hover:bg-blue-700 text-white font-bold p-2 rounded ">
-                Editar</a>
+                Editar</a> --}}
         </div>
 
     @empty

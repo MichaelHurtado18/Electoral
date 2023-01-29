@@ -53,16 +53,19 @@
             <x-input-error :messages="$errors->get('puesto')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="imagen" :value="__('imagen')" />
-            <input type="file" id="imagen" wire:model="imagen" name="imagen">
+            <x-input-label for="nueva_imagen" :value="__('Imagen')" />
+            <input type="file" id="nueva_imagen" wire:model="nueva_imagen" name="nueva_imagen">
+            <x-input-error :messages="$errors->get('nueva_imagen')" class="mt-2" />
             <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
-            <div class="md:w-80">
-                {{-- @if ($imagen)
-                    Image Preview: <img src="{{ $imagen->temporaryUrl() }}">
+            <div class="md:w-40">
+                {{-- @if ($nueva_imagen)
+                    <img src="{{ $nueva_imagen->temporaryUrl() }}">
                 @endif --}}
             </div>
         </div>
-
+        <div wire:loading>
+            Subiendo Archivo...
+        </div>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 href="{{ route('login') }}">

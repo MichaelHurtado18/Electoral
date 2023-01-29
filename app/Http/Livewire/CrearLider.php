@@ -2,9 +2,13 @@
 
 namespace App\Http\Livewire;
 
+
 use App\Models\Lideres;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class CrearLider extends Component
 {
@@ -24,13 +28,26 @@ class CrearLider extends Component
         'email' => ['required', 'email', 'unique:lideres,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
-        'imagen' => ['nullable', 'image']
+        'imagen' => ['nullable', 'image', 'max:1024']
     ];
+
+
+
 
     public function create()
     {
-        // Validamos los campos
+
         $this->validate();
+        if ($this->imagen) {        
+            $imagen = $this->imagen;
+            $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();
+            $this->imagen = $nombreImagen;
+            $img = Image::make($imagen->getRealPath())->fit(700, 700);
+            $img->stream();
+            Storage::disk('local')->put("public/lideres/$nombreImagen", $img);
+        }
+
+
         // Creamos al Lider
         Lideres::create([
             'nombre' => $this->nombre,
