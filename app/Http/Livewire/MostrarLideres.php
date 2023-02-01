@@ -17,8 +17,7 @@ class MostrarLideres extends Component
 
     public function render()
     {
-        // $lideres = Lideres::latest()->paginate(12);
-
+     
         $lideres = Lideres::when($this->termino, function ($query) {
             $query->where('nombre', 'LIKE', '%' . $this->termino . '%');
         })

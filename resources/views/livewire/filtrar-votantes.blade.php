@@ -8,7 +8,7 @@
                       
                         <input id="termino" wire:model="termino" type="text"
                             placeholder="Buscar por nombre, celular, cedula o correo"
-                            class="  bg-gray-800 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full dark:text-gray-100" />
+                            class="  dark:bg-gray-800 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full dark:text-gray-100" />
                     </div>
                     <div class="mt-2">
                         <input type="submit"

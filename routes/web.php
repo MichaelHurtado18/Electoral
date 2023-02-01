@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -37,6 +37,8 @@ Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->nam
 Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
 // Rutas Puestos
 Route::get('/puestos', [PuestosController::class, 'index'])->name('puestos.index')->middleware(['auth']);
+Route::get('/puestos/{puestos}', [PuestosController::class, 'show'])->name('puestos.show')->middleware(['auth']);
+Route::post('/puestos', [PuestosController::class, 'store'])->name('puestos.store')->middleware(['auth']);
 
 
 // Route::get('/api',);

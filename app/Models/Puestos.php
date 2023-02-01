@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Puestos extends Model
 {
 
+    protected $fillable = [
+        'nombre'
+    ];
 
     public function votantes()
     {

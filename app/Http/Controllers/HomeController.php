@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lideres;
+use App\Models\Votantes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,6 +24,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        $totalVotantes = Votantes::all()->count();
+        $totalLideres = Lideres::all()->count();
+        return view('dashboard', ["totalVotantes" => $totalVotantes, "totalLideres" => $totalLideres]);
     }
 }

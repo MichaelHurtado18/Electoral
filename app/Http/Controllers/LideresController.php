@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lideres;
+use App\Models\Votantes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LideresController extends Controller
 {
-    //
-
     public function index()
     {
         return view('lideres.index');

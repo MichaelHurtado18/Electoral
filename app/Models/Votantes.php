@@ -19,6 +19,18 @@ class Votantes extends Model
         'lider_id'
     ];
 
-   
+
+    public function lider()
+    {
+        return $this->belongsTo(Lideres::class);
+    }
+
+    public function puesto()
+    {
+        return $this->belongsTo(Puestos::class);
+    }
+
+
+
     use HasFactory;
 }

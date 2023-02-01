@@ -1,25 +1,90 @@
 <x-app-layout>
     <x-slot name="header">
         <div>
-            <a href="{{ route('lideres.create') }}"
-                class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full">
-                Agregar Nuevo Lider
+            <a class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full btn_agregar_puesto">
+                Agregar Nuevo Puesto
             </a>
+            <livewire:filtrar-puestos />
             @if (session()->has('mensaje'))
                 <p class="text-lg font-bold text-white text-center uppercase rounded m-5 bg-green-400 p-5">
                     {{ session('mensaje') }}</p>
             @endif
         </div>
     </x-slot>
+    <div class="pt-6 text-gray-900 dark:text-gray-100 text-center">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
-                <div class="p-6 text-gray-900 dark:text-gray-100 text-center">
-                    <livewire:filtrar-lideres />
-                    <livewire:mostrar-lideres />
-                </div>
-            </div>
-        </div>
+        <livewire:mostrar-puestos />
     </div>
+    @push('scripts')
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            /*CON ESTE SCRITP CREAMOS UN NUEVO PUESTO*/
+            const btnAgregar = document.querySelector('.btn_agregar_puesto');
+            btnAgregar.addEventListener('click', async function(id) {
+                console.log(id)
+                window.CSRF_TOKEN = '{{ csrf_token() }}';
+
+                const {
+                    value: puesto
+                } = await Swal.fire({
+                    title: 'Puesto',
+                    input: 'text',
+                    inputLabel: 'El nombre del puesto',
+                    inputPlaceholder: 'Agregar Puesto'
+                })
+
+                if (puesto) {
+                    const url = 'http://127.0.0.1:8000/puestos';
+                    let datos = new FormData();
+                    datos.append('puesto', puesto);
+                    let consulta = await fetch(url, {
+                        headers: {
+                            'X-CSRF-TOKEN': window.CSRF_TOKEN
+                        },
+                        method: 'POST',
+                        body: datos
+                    })
+                    const response = await consulta.text();
+                    Swal.fire(`Se Creo el puesto: ${puesto}`)
+                    Livewire.emit('getPuestos');
+                }
+            })
+
+
+            /*CON ESTE SCRIPT ELIMINAMOS UN PUESTO*/
+
+            Livewire.on('modalEliminar', function(id) {
+
+                Swal.fire({
+                    title: '¿Quieres eliminar este puesto?',
+                    text: "Tenga en cuenta que no puede recuperar los puestos eliminadas!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('eliminarPuesto', id);
+                        Swal.fire({
+                            title: 'Eliminado',
+                            text: 'El puesto se elimino correctamente',
+                            icon: 'success'
+                        });
+                    }
+                });
+            })
+
+
+            Livewire.on('errorPuesto', function(mensaje) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: mensaje,
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>

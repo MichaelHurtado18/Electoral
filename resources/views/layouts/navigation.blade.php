@@ -12,13 +12,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('lideres.index')" :active="request()->routeIs('lideres.index')">
+                    <x-nav-link :href="route('lideres.index')" :active="request()->routeIs(['lideres.index', 'lideres.create', 'lideres.show', 'lideres.edit'])">
                         {{ __('Lideres') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('votantes.index')" :active="request()->routeIs('votantes.index')">
+                    <x-nav-link :href="route('votantes.index')" :active="request()->routeIs(['votantes.index', 'votantes.create', 'votantes.edit'])">
                         {{ __(' Votantes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('puestos.index')" :active="request()->routeIs('puestos.index')">
+                    <x-nav-link :href="route('puestos.index')" :active="request()->routeIs(['puestos.index', 'puestos.show'])">
                         {{ __(' Puestos') }}
                     </x-nav-link>
                 </div>

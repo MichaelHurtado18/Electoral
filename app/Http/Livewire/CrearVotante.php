@@ -26,7 +26,7 @@ class CrearVotante extends Component
     protected $rules = [
         'nombre' => ['required'],
         'apellido' => ['required'],
-        'email' => ['required', 'email', 'unique:lideres,correo'],
+        'email' => ['required', 'email', 'unique:votantes,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
         'imagen' => ['nullable', 'image', 'max:1024'],

@@ -44,7 +44,7 @@
             <x-input-label for="nueva_imagen" :value="__('nueva imagen')" />
             <input type="file" id="nueva_imagen" wire:model="nueva_imagen" name="nueva_imagen">
             <x-input-error :messages="$errors->get('nueva_imagen')" class="mt-2" />
-                <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+            <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
             <div class="flex md:w-40">
 
                 @if ($nueva_imagen)
@@ -54,13 +54,8 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
             <x-primary-button class="ml-4">
-                {{ __('Register') }}
+                {{ __('Editar') }}
             </x-primary-button>
         </div>
     </form>

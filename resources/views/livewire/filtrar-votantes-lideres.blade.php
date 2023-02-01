@@ -1,5 +1,5 @@
 <div class="bg-gray-100 dark:bg-gray-800 m-5 p-2">
-    <h2 class="text-2xl md:text-4xl text-gray-600 dark:text-gray-100 text-center font-extrabold ">Buscar Lideres</h2>
+    <h2 class="text-2xl md:text-4xl text-gray-600 dark:text-gray-100 text-center font-extrabold ">Buscar Votantes</h2>
     <div class="max-w-7xl mx-auto">
         <form wire:submit.prevent="buscar">
             <div class="md:flex md:justify-center md:items-center mb-5">
