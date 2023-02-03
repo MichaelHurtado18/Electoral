@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tenancy\Identification\Contracts\Tenant;
 
-class User extends Authenticatable implements Tenant
+class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
