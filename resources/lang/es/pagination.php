@@ -1,15 +1,15 @@
-<?php
+<?php 
 
 return [
 
     /*
     |--------------------------------------------------------------------------
-    | Pagination Language Lines
+    | Paginación Líneas de lenguaje
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used by the paginator library to build
-    | the simple pagination links. You are free to change them to anything
-    | you want to customize your views to better match your application.
+    | Las siguientes lineas de paginación son usadas para los enlaces de paginación.
+    | Eres libre de cambiarlos a lo que quieras.
+    | Si se te ocurre algo más emocionante, háznoslo saber.
     |
     */
 
