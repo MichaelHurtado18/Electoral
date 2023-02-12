@@ -15,7 +15,7 @@ class HomeController extends Controller
         $puestos = DB::table('puestos')
             ->join('votantes', 'puestos.id', '=', 'votantes.puesto_id')
             ->select('puestos.nombre', DB::raw('COUNT(puestos.id) as total'))
-            ->groupBy('puestos.id', 'puestos.nombre ')
+            ->groupBy('puestos.id', 'puestos.nombre')
             ->get();
 
         return $puestos;
