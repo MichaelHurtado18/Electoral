@@ -1,1 +1,1 @@
-<img src="{{asset('build/img/logo.png')}}" alt=""  >
+<img src="{{asset('storage/img/logo.png')}}" alt="logo electoral" >
