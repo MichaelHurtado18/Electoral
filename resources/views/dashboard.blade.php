@@ -25,7 +25,7 @@
     window.addEventListener('DOMContentLoaded', getPuestos);
 
     async function getPuestos() {
-        const url = 'http://127.0.0.1:8000/api/grafica';
+        const url = 'https://quiet-atoll-97931.herokuapp.com//api/grafica';
         let consulta = await fetch(url);
         let respuesta = await consulta.json();
         console.log(respuesta)
