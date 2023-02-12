@@ -8,7 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <p class="text-center font-bold text-orange-500 text-xl my-2"> Hay un total de {{ $totalLideres }} Lideres y {{ $totalVotantes }} Votantes </p>
+                <p class="text-center font-bold text-orange-500 text-xl my-2"> Hay un total de {{ $totalLideres }}
+                    Lideres y {{ $totalVotantes }} Votantes </p>
                 <div class=text-gray-900 dark:text-gray-100" style="position: relative; height:80vh; width:80vw">
                     <canvas id="bar-chart"></canvas>
                 </div>
@@ -27,6 +28,8 @@
         const url = 'http://127.0.0.1:8000/api/grafica';
         let consulta = await fetch(url);
         let respuesta = await consulta.json();
+        console.log(respuesta)
+        
         let puestos = respuesta.map(respuesta => respuesta.nombre);
         let totales = respuesta.map(respuesta => respuesta.total);
 
