@@ -45,7 +45,7 @@ Route::post('/puestos', [PuestosController::class, 'store'])->name('puestos.stor
 
 
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/api/grafica', [HomeController::class, 'getGrafica']);
+Route::get('/api/grafica', [HomeController::class, 'getGrafica'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
