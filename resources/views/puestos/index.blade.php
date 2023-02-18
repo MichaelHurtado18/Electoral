@@ -35,7 +35,7 @@
                 })
 
                 if (puesto) {
-                    const url = 'http://127.0.0.1:8000/puestos';
+                    const url = 'https://electoralsoft.herokuapp.com//puestos';
                     let datos = new FormData();
                     datos.append('puesto', puesto);
                     let consulta = await fetch(url, {
