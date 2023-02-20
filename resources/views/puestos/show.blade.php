@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div>
-            <h2 class="font-bold text-2xl text-orange-500"> {{ $puesto->votantes->count() }} Personas Votaran en :
+            <h2 class="font-bold text-2xl text-orange-500"> {{  $puesto->votantes->count()  +  $puesto->lideres->count()}} Personas Votaran en :
                 {{ $puesto->nombre }} </h2>
             <livewire:filtrar-votantes-puestos />
         </div>

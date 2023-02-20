@@ -12,13 +12,18 @@ class HomeController extends Controller
 
     public function getGrafica()
     {
-        $puestos = DB::table('puestos')
-            ->join('votantes', 'puestos.id', '=', 'votantes.puesto_id')
-            ->select('puestos.nombre', DB::raw('COUNT(puestos.id) as total'))
-            ->groupBy('puestos.id')
-            ->get();
+        /*CREAMOS LA CONSULTA QUE DEVUELVE EL GRAFICO */
+        $query =   DB::select("
+         SELECT nombre, COUNT(puesto_id) as total FROM
+          ( SELECT lideres.puesto_id as puesto_id FROM lideres  
+                     UNION ALL 
+         SELECT votantes.puesto_id as puesto_id FROM votantes )
+          nueva_tabla INNER JOIN puestos ON nueva_tabla.puesto_id=puestos.id GROUP BY puesto_id;
+          ");
 
-        return $puestos;
+
+
+        return $query;
     }
 
 

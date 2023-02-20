@@ -14,6 +14,10 @@
                 <a href="{{ route('lideres.show', $lider) }}"
                     class=" absolute bottom-0 w-full block bg-orange-600 hover:bg-orange-700 text-white font-bold p-2 rounded "> Ver
                     Votantes</a>
+                    <p> <a href="{{ route('puestos.show', $lider->puesto) }}"> <span class="font-bold"> Puesto
+                        Votación:</span>
+                    {{ $lider->puesto->nombre }} </a>
+            </p>
             </div>
 
         @empty

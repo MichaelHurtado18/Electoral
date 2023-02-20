@@ -16,7 +16,6 @@
                         {{ $votante->puesto->nombre }} </a>
                 </p>
             </div>
-
             <a href="{{ route('votantes.edit', $votante) }}"
                 class="  absolute bottom-0 w-full  mt-2 block bg-blue-600 hover:bg-blue-700 text-white font-bold p-2 rounded ">
                 Editar</a>

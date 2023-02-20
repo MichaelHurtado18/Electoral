@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('cedula');
             $table->string('imagen')->nullable();
             $table->timestamps();
+            $table->foreignId('puesto_id')->constrained('puestos', 'id')->onDelete('RESTRICT');
         });
     }
 

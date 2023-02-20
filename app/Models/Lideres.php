@@ -15,6 +15,7 @@ class Lideres extends Model
         'telefono',
         'cedula',
         'imagen',
+        'puesto_id'
     ];
 
 
@@ -22,5 +23,10 @@ class Lideres extends Model
     {
         return $this->hasMany(Votantes::class, 'lider_id');
     }
+    public function puesto()
+    {
+        return $this->belongsTo(Puestos::class);
+    }
+
     use HasFactory;
 }

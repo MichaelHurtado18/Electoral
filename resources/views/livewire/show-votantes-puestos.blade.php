@@ -18,8 +18,9 @@
                             Telefono</th>
                     </tr>
                 </thead>
-                
+
                 <tbody class="bg-white">
+
                     @foreach ($votantes as $votante)
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
