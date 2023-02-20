@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function getGrafica()
     {
         /*CREAMOS LA CONSULTA QUE DEVUELVE EL GRAFICO */
+        DB::statement("SET SQL_MODE=''");
         $query =   DB::select("
          SELECT nombre, COUNT(puesto_id) as total FROM
           ( SELECT lideres.puesto_id as puesto_id FROM lideres  
