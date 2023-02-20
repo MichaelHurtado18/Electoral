@@ -21,6 +21,8 @@ class HomeController extends Controller
           nueva_tabla INNER JOIN puestos ON nueva_tabla.puesto_id=puestos.id GROUP BY puesto_id;
           ");
 
+
+
         return $query;
     }
 

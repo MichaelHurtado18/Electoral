@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 
 use App\Models\Lideres;
+use App\Models\Puestos;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -20,7 +21,7 @@ class CrearLider extends Component
     public $telefono;
     public $cedula;
     public $imagen;
-
+    public $puesto;
 
     protected $rules = [
         'nombre' => ['required'],
@@ -28,7 +29,8 @@ class CrearLider extends Component
         'email' => ['required', 'email', 'unique:lideres,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
-        'imagen' => ['nullable', 'image', 'max:1024']
+        'imagen' => ['nullable', 'image', 'max:1024'],
+        'puesto' => ['required', 'exists:puestos,id'],
     ];
 
 
@@ -38,7 +40,7 @@ class CrearLider extends Component
     {
 
         $this->validate();
-        if ($this->imagen) {        
+        if ($this->imagen) {
             $imagen = $this->imagen;
             $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();
             $this->imagen = $nombreImagen;
@@ -55,7 +57,8 @@ class CrearLider extends Component
             'correo' => $this->email,
             'telefono' => $this->telefono,
             'cedula' => $this->cedula,
-            'imagen' => $this->imagen
+            'imagen' => $this->imagen,
+            'puesto_id' => $this->puesto
         ]);
 
         // Creamos un mensaje de exito
@@ -71,6 +74,9 @@ class CrearLider extends Component
     }
     public function render()
     {
-        return view('livewire.crear-lider');
+        $puestos = Puestos::all();
+        return view('livewire.crear-lider', [
+            'puestos' => $puestos
+        ]);
     }
 }

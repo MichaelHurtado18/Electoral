@@ -42,8 +42,6 @@ Route::post('/puestos', [PuestosController::class, 'store'])->name('puestos.stor
 
 
 // Route::get('/api',);
-
-
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/api/grafica', [HomeController::class, 'getGrafica'])->middleware(['auth', 'verified']);
 

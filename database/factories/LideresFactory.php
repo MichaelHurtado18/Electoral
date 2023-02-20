@@ -23,6 +23,7 @@ class LideresFactory extends Factory
             'apellido' => fake()->name(),
             'telefono' => fake()->name(),
             'cedula' => fake()->name(),
+            'puesto_id' =>  rand(1, 11),
         ];
     }
 }
