@@ -18,10 +18,10 @@ class HomeController extends Controller
           ( SELECT lideres.puesto_id as puesto_id FROM lideres  
                      UNION ALL 
          SELECT votantes.puesto_id as puesto_id FROM votantes )
-          nueva_tabla INNER JOIN puestos ON nueva_tabla.puesto_id=puestos.id GROUP BY puesto.id;
+          nueva_tabla INNER JOIN puestos ON nueva_tabla.puesto_id=puestos.id GROUP BY puestos.id;
           ");
         return $query;
-    }
+    }   
 
 
     public function dashboard()
