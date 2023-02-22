@@ -46,7 +46,7 @@ class CrearLider extends Component
             $this->imagen = $nombreImagen;
             $img = Image::make($imagen->getRealPath())->fit(700, 700);
             $img->stream();
-            Storage::disk('local')->put("public/lideres/$nombreImagen", $img);
+            Storage::disk('public')->put("public/lideres/$nombreImagen", $img);
         }
 
 
