@@ -1,6 +1,8 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_URI} !/public
-RewriteRule ^(.*)$ public/$1
+    chgrp -R www-data storage
+    chmod -R ug+rwx storage
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_URI} !/public
+    RewriteRule ^(.*)$ public/$1
 </IfModule>
