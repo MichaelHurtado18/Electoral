@@ -40,7 +40,6 @@ class CrearVotante extends Component
         // Validamos los datos
         $this->validate();
 
-        // 
         if ($this->imagen) {
             $imagen = $this->imagen;
             $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();

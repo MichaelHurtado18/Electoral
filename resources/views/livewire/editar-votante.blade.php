@@ -58,9 +58,9 @@
             <x-input-error :messages="$errors->get('nueva_imagen')" class="mt-2" />
             <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
             <div class="md:w-40">
-                {{-- @if ($nueva_imagen)
+                @if ($nueva_imagen)
                     <img src="{{ $nueva_imagen->temporaryUrl() }}">
-                @endif --}}
+                @endif
             </div>
         </div>
         <div wire:loading>
