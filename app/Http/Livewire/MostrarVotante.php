@@ -26,6 +26,7 @@ class MostrarVotante extends Component
             ->Orwhere('correo', 'LIKE', '%' . $this->termino . '%')
             ->orWhere('cedula', 'LIKE', '%' . $this->termino . '%')
             ->orWhere('telefono', 'LIKE', '%' . $this->termino . '%')
+            ->orderByDesc('id')
             ->paginate(12);
         return view('livewire.mostrar-votante', ["votantes" => $votantes]);
     }

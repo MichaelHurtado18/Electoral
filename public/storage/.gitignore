@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 
 !.gitignore
+||||||| fbb88af
+=======
+*
+!.gitignore
+>>>>>>> master

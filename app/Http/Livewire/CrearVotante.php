@@ -22,16 +22,18 @@ class CrearVotante extends Component
     public $puesto;
     public $lider;
     public $imagen;
+    public $mesa;
 
     protected $rules = [
         'nombre' => ['required'],
         'apellido' => ['required'],
-        'email' => ['required', 'email', 'unique:votantes,correo'],
+        'email' => ['nullable', 'email', 'unique:votantes,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
         'imagen' => ['nullable', 'image', 'max:1024'],
         'puesto' => ['required', 'exists:puestos,id'],
-        'lider' => ['required', 'exists:lideres,id']
+        'lider' => ['required', 'exists:lideres,id'],
+        'mesa' => ['required', 'numeric']
     ];
 
     public function create()
@@ -40,7 +42,6 @@ class CrearVotante extends Component
         // Validamos los datos
         $this->validate();
 
-        // 
         if ($this->imagen) {
             $imagen = $this->imagen;
             $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();
@@ -59,7 +60,8 @@ class CrearVotante extends Component
             'cedula' => $this->cedula,
             'imagen' => $this->imagen,
             'lider_id' => $this->lider,
-            'puesto_id' => $this->puesto
+            'puesto_id' => $this->puesto,
+            'mesa' => $this->mesa,
         ]);
 
         // Creamos el mensaje de exito

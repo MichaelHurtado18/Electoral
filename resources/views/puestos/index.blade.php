@@ -11,8 +11,11 @@
             @endif
         </div>
     </x-slot>
-    <div class="pt-6 text-gray-900 dark:text-gray-100 text-center">
-
+    <div>
+        <div class="pt-6 text-gray-900 dark:text-gray-100 text-center">
+            <a href="{{route('puestos.export')}}"
+                class="bg-green-500 hover:bg-green-600 transition-colors text-white text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase w-full md:w-auto">
+                Descargar Puestos</a>
         <livewire:mostrar-puestos />
     </div>
     @push('scripts')

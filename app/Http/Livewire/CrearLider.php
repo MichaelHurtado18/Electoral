@@ -22,15 +22,17 @@ class CrearLider extends Component
     public $cedula;
     public $imagen;
     public $puesto;
+    public $mesa;
 
     protected $rules = [
         'nombre' => ['required'],
         'apellido' => ['required'],
-        'email' => ['required', 'email', 'unique:lideres,correo'],
+        'email' => ['nullable','email', 'unique:lideres,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
         'imagen' => ['nullable', 'image', 'max:1024'],
         'puesto' => ['required', 'exists:puestos,id'],
+        'mesa' => ['required', 'numeric']
     ];
 
 
@@ -58,7 +60,8 @@ class CrearLider extends Component
             'telefono' => $this->telefono,
             'cedula' => $this->cedula,
             'imagen' => $this->imagen,
-            'puesto_id' => $this->puesto
+            'puesto_id' => $this->puesto,
+            'mesa' => $this->mesa,
         ]);
 
         // Creamos un mensaje de exito

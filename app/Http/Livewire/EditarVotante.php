@@ -26,6 +26,7 @@ class EditarVotante extends Component
     public $puesto;
     public $imagen;
     public $nueva_imagen;
+    public $mesa;
 
 
     public function mount($votante)
@@ -38,14 +39,10 @@ class EditarVotante extends Component
         $this->cedula = $votante->cedula;
         $this->puesto = $votante->puesto_id;
         $this->imagen = $votante->imagen;
+        $this->mesa = $votante->mesa;
     }
 
 
-
-    // public function updating()
-    // {
-    //     dd('Hola');
-    // }
 
     public function update()
     {
@@ -53,11 +50,12 @@ class EditarVotante extends Component
         $this->validate([
             'nombre' => ['required'],
             'apellido' => ['required'],
-            'email' => ['required', 'email',  Rule::unique('votantes', 'correo')->ignore($this->id_votante)],
+            'email' => ['nullable','email',  Rule::unique('votantes', 'correo')->ignore($this->id_votante)],
             'telefono' => 'required|digits:10',
             'cedula' => ['required', 'max:12'],
             'puesto' => ['required', 'exists:puestos,id'],
             'nueva_imagen' => ['nullable', 'image', 'max:1024'],
+            'mesa' => ['required', 'numeric']
         ]);
 
 
@@ -68,7 +66,7 @@ class EditarVotante extends Component
             $img = Image::make($imagen->getRealPath())->fit(700, 700); // Recortamos la imagen
             $img->stream();
             Storage::disk('local')->put("public/votantes/$nombreImagen", $img); // Guardamos la imagen
-            
+
             if ($this->imagen) {
                 Storage::delete("public/votantes/$this->imagen");    // Eliminamos la imagen anterior
             }
@@ -84,6 +82,7 @@ class EditarVotante extends Component
         $votante->telefono = $this->telefono;
         $votante->puesto_id = $this->puesto;
         $votante->imagen = $this->imagen;
+        $votante->mesa = $this->mesa;
         $votante->save();
 
 

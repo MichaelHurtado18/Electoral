@@ -25,6 +25,7 @@ class MostrarLideres extends Component
             ->Orwhere('apellido', 'LIKE', '%' . $this->termino . '%')
             ->orWhere('cedula', 'LIKE', '%' . $this->termino . '%')
             ->orWhere('telefono', 'LIKE', '%' . $this->termino . '%')
+            ->orderByDesc('id')
             ->paginate(12);
         return view('livewire.mostrar-lideres', ["lideres" => $lideres]);
     }

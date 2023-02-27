@@ -40,6 +40,28 @@
             <x-input-error :messages="$errors->get('cedula')" class="mt-2" />
         </div>
 
+        <div class="mt-4 md:flex md:gap-7">
+            <div>
+                <x-input-label for="puesto" :value="__('Puesto')" />
+                <select name="puesto" id="puesto" wire:model="puesto"
+                    class=" block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    <option> --Seleccionar -- </option>
+                    @foreach ($puestos as $puesto)
+                        <option value="{{ $puesto->id }}"> {{ $puesto->nombre }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('puesto')" class="mt-2" />
+
+            </div>
+            <div class="">
+                <x-input-label for="mesa" :value="__('Mesa de votación')" />
+                <x-text-input id="mesa" wire:model="mesa" class="block mt-1 w-28" type="text" name="mesa"
+                    :value="old('mesa')" required />
+                <x-input-error :messages="$errors->get('mesa')" class="mt-2" />
+            </div>
+
+
+        </div>
         <div class="mt-4">
             <x-input-label for="nueva_imagen" :value="__('nueva imagen')" />
             <input type="file" id="nueva_imagen" wire:model="nueva_imagen" name="nueva_imagen">

@@ -48,7 +48,8 @@ class MostrarPuestos extends Component
     {
         $puestos = Puestos::when($this->termino, function ($query) {
             $query->where('nombre', 'LIKE', '%' . $this->termino . '%');
-        })->paginate(30);
+        })->orderByDesc('id')
+            ->paginate(30);
 
         return view('livewire.mostrar-puestos', ["puestos" => $puestos]);
     }

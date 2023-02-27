@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('correo');
+            $table->string('correo')->nullable();
             $table->string('telefono');
             $table->string('cedula');
             $table->string('imagen')->nullable();

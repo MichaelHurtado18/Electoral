@@ -54,11 +54,13 @@ class ShowVotantesPuestos extends Component
             $votantes = DB::table('puestos')
                 ->join('lideres', 'puestos.id', '=', 'lideres.puesto_id')
                 ->select('lideres.nombre', 'lideres.apellido', 'lideres.correo', 'lideres.cedula', 'lideres.telefono')
+                ->orderByDesc('lideres.id')
                 ->where('puestos.id',  $this->puesto->id);
             $votantes = DB::table('puestos')
                 ->join('votantes', 'puestos.id', '=', 'votantes.puesto_id')
                 ->select('votantes.nombre', 'votantes.apellido', 'votantes.correo', 'votantes.cedula', 'votantes.telefono')
                 ->where('puestos.id',  $this->puesto->id)
+                ->orderByDesc('votantes.id')
                 ->union($votantes)
                 ->paginate(10);
         }

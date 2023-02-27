@@ -17,8 +17,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="">
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-center">
-
-                    <livewire:mostrar-votante />
+                    <div>
+                        <a href="{{ route('votantes.export') }}"
+                            class="bg-green-500 hover:bg-green-600 transition-colors text-white text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase w-full md:w-auto">
+                            Descargar Votantes</a>
+                        <livewire:mostrar-votante />
+                    </div>
                 </div>
             </div>
         </div>

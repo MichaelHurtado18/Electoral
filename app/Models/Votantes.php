@@ -16,10 +16,12 @@ class Votantes extends Model
         'cedula',
         'imagen',
         'puesto_id',
+        'mesa',
         'lider_id'
     ];
 
 
+    protected $hidden = ['created_at', 'updated_at'];
     public function lider()
     {
         return $this->belongsTo(Lideres::class);
