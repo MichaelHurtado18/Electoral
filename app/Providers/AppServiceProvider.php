@@ -16,23 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()  
     {
-<<<<<<< HEAD
         if (env('REDIRECT_HTTPS')) {
             $this->app['request']->server->set('HTTPS', true);
         }
-||||||| fbb88af
-        $this->app->resolving(ResolvesTenants::class, function (ResolvesTenants $resolver) {
-            $resolver->addModel(User::class);
-
-            return $resolver;
-        });
-=======
-        // $this->app->resolving(ResolvesTenants::class, function (ResolvesTenants $resolver) {
-        //     $resolver->addModel(User::class);
-
-        //     return $resolver;
-        // });
->>>>>>> master
     }
 
     /**
