@@ -29,12 +29,12 @@ class ShowVotantesLideres extends Component
                         ->Orwhere('correo', 'LIKE', '%' . $this->termino . '%')
                         ->orWhere('cedula', 'LIKE', '%' . $this->termino . '%')
                         ->orWhere('telefono', 'LIKE', '%' . $this->termino . '%');
-                })->paginate(10);
+                })
+                ->orderByDesc('id')
+                ->paginate(10);
         } else {
             $votantes = Votantes::where('lider_id', $this->lider->id)->paginate(10);
         }
-
-
         return view('livewire.show-votantes-lideres', ["votantes" => $votantes]);
     }
 }

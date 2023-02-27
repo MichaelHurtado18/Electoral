@@ -14,6 +14,7 @@ class Puestos extends Model
         'nombre'
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
     public function votantes()
     {
         return $this->hasMany(Votantes::class, 'puesto_id');

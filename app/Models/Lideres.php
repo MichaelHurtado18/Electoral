@@ -15,9 +15,11 @@ class Lideres extends Model
         'telefono',
         'cedula',
         'imagen',
+        'mesa',
         'puesto_id'
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function votante()
     {

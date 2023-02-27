@@ -15,7 +15,12 @@
                     <x-nav-link :href="route('lideres.index')" :active="request()->routeIs(['lideres.index', 'lideres.create', 'lideres.show', 'lideres.edit'])">
                         {{ __('Lideres') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('votantes.index')" :active="request()->routeIs(['votantes.index', 'votantes.create', 'votantes.edit'])">
+                    <x-nav-link :href="route('votantes.index')" :active="request()->routeIs([
+                        'votantes.index',
+                        'votantes.create',
+                        'votantes.edit',
+                        'votantes.show',
+                    ])">
                         {{ __(' Votantes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('puestos.index')" :active="request()->routeIs(['puestos.index', 'puestos.show'])">
@@ -89,6 +94,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('votantes.index')" :active="request()->routeIs('votantes.index')">
                 {{ __(' Votantes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('puestos.index')" :active="request()->routeIs('puestos.index')">
+                {{ __(' Puestos') }}
             </x-responsive-nav-link>
         </div>
 

@@ -25,7 +25,8 @@ class VotantesFactory extends Factory
             'telefono' => 1234567890,
             'cedula' => 12345,
             'puesto_id' => rand(1, 11),
-            'lider_id' => rand(1, 3)
+            'lider_id' => rand(1, 2),
+            'mesa' => rand(1, 1000)
         ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use livewire;
 use App\Models\Lideres;
+use App\Models\Puestos;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -22,10 +24,11 @@ class EditarLider extends Component
     public $cedula;
     public $imagen;
     public $nueva_imagen;
+    public $puesto;
+    public $mesa;
 
     public function mount($lider)
     {
-
         $this->id_lider = $lider->id;
         $this->nombre = $lider->nombre;
         $this->apellido = $lider->apellido;
@@ -33,6 +36,8 @@ class EditarLider extends Component
         $this->telefono = $lider->telefono;
         $this->cedula = $lider->cedula;
         $this->imagen = $lider->imagen;
+        $this->puesto = $lider->puesto_id;
+        $this->mesa = $lider->mesa;
     }
 
     public function update()
@@ -42,10 +47,12 @@ class EditarLider extends Component
         $this->validate([
             'nombre' => ['required'],
             'apellido' => ['required'],
-            'email' => ['required', 'email',  Rule::unique('lideres', 'correo')->ignore($this->id_lider)],
+            'email' => ['nullable','email',  Rule::unique('lideres', 'correo')->ignore($this->id_lider)],
             'telefono' => 'required|digits:10',
             'cedula' => ['required', 'max:12'],
-            'nueva_imagen' => ['nullable', 'image', 'max:1024']
+            'nueva_imagen' => ['nullable', 'image', 'max:1024'],
+            'puesto' => ['required', 'exists:puestos,id'],
+            'mesa' => ['required', 'numeric']
         ]);
 
         //     Validar si  esta cambiando la imagen
@@ -70,6 +77,8 @@ class EditarLider extends Component
         $lider->cedula = $this->cedula;
         $lider->telefono = $this->telefono;
         $lider->imagen = $this->imagen;
+        $lider->puesto_id = $this->puesto;
+        $lider->mesa = $this->mesa;
         $lider->save();
 
         // Creamos mensaje
@@ -81,6 +90,7 @@ class EditarLider extends Component
 
     public function render()
     {
-        return view('livewire.editar-lider');
+        $puestos = Puestos::all();
+        return view('livewire.editar-lider', ["puestos" => $puestos]);
     }
 }

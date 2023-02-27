@@ -30,21 +30,27 @@ Route::get('/lideres', [LideresController::class, 'index'])->name('lideres.index
 Route::get('/lideres/create', [LideresController::class, 'create'])->name('lideres.create')->middleware(['auth']);
 Route::get('/lideres/{lider}/edit', [LideresController::class, 'edit'])->name('lideres.edit')->middleware(['auth']);
 Route::get('/lideres/{lider}', [LideresController::class, 'show'])->name('lideres.show')->middleware(['auth']);
+Route::get('/lideres.export', [LideresController::class, 'export'])->name('lideres.export')->middleware(['auth']);
+Route::get('/lideres/{lider}/export', [LideresController::class, 'showExport'])->name('lideres.showExport')->middleware(['auth']);
 // Rutas Votantes
 Route::get('/votantes', [VotantesController::class, 'index'])->name('votantes.index')->middleware(['auth']);
 Route::get('/votantes/create', [VotantesController::class, 'create'])->name('votantes.create')->middleware(['auth']);
+Route::get('/votantes/{votante}', [VotantesController::class, 'show'])->name('votantes.show')->middleware(['auth']);
 Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
 Route::get('/votantes/{votante}/edit', [VotantesController::class, 'edit'])->name('votantes.edit')->middleware(['auth']);
+Route::get('/votantes.export', [VotantesController::class, 'export'])->name('votantes.export')->middleware(['auth']);
 // Rutas Puestos
 Route::get('/puestos', [PuestosController::class, 'index'])->name('puestos.index')->middleware(['auth']);
 Route::get('/puestos/{puestos}', [PuestosController::class, 'show'])->name('puestos.show')->middleware(['auth']);
 Route::post('/puestos', [PuestosController::class, 'store'])->name('puestos.store')->middleware(['auth']);
+Route::get('/puestos.export', [PuestosController::class, 'export'])->name('puestos.export')->middleware(['auth']);
+Route::get('/puestos/{puestos}/export', [PuestosController::class, 'showExport'])->name('puestos.showExport')->middleware(['auth']);
 
 
 // Route::get('/api',);
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/api/grafica', [HomeController::class, 'getGrafica'])->middleware(['auth', 'verified']);
-
+    
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
