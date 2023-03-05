@@ -2,7 +2,7 @@
     @forelse($votantes as $votante)
         <div class=" relative pb-10 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
             <div>
-                <img src="{{ $votante->imagen != '' ? asset("storage/votantes/$votante->imagen") : asset('storage/votantes/user.png') }}"
+                <img src="{{ $votante->imagen != '' ? $votante->imagen : asset('storage/votantes/user.png') }}"
                     alt="Imagen {{ $votante->nombre }}">
                 <p class="font-bold text-xl"> {{ $votante->nombre . ' ' . $votante->apellido }}</p>
                 {{-- <p> <span class="font-bold"> Correo: </span> {{ $votante->correo }}</p> --}}

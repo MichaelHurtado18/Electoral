@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Lideres;
 use App\Models\Votantes;
+use Cloudinary\Cloudinary as CloudinaryCloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +29,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+
+       
         $totalVotantes = Votantes::all()->count();
         $totalLideres = Lideres::all()->count();
         return view('dashboard', ["totalVotantes" => $totalVotantes, "totalLideres" => $totalLideres]);

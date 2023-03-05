@@ -3,7 +3,7 @@
         @forelse($lideres as $lider)
             <div class=" relative pb-10 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
                 <div>
-                    <img src="{{ $lider->imagen != '' ? asset("storage/lideres/$lider->imagen") : asset('storage/lideres/user.png') }}"
+                    <img src="{{ $lider->imagen != '' ? $lider->imagen  : asset('storage/lideres/user.png') }}"
                         alt="Imagen {{ $lider->nombre }}">
                     <p class="font-bold text-lg"> {{ $lider->nombre . ' ' . $lider->apellido }}</p>
                     {{-- <p> <span class="font-bold text-sm"> Correo: </span> {{ $lider->correo }}</p> --}}

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CrearVotante extends Component
 {
@@ -23,6 +24,7 @@ class CrearVotante extends Component
     public $lider;
     public $imagen;
     public $mesa;
+    public $img_id;
 
     protected $rules = [
         'nombre' => ['required'],
@@ -44,11 +46,10 @@ class CrearVotante extends Component
 
         if ($this->imagen) {
             $imagen = $this->imagen;
-            $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();
-            $this->imagen = $nombreImagen;
-            $img = Image::make($imagen->getRealPath())->fit(700, 700);
-            $img->stream();
-            Storage::disk('local')->put("public/votantes/$nombreImagen", $img);
+            $img =  (string) Image::make($imagen->getRealPath())->fit(700, 700)->encode('data-url');
+            $cloudinary =   Cloudinary::upload($img, ['folder' => 'votantes']);
+            $this->imagen = $cloudinary->getSecurePath();
+            $img_id = $cloudinary->getPublicId();
         }
 
         // Creamos el votante
@@ -62,6 +63,7 @@ class CrearVotante extends Component
             'lider_id' => $this->lider,
             'puesto_id' => $this->puesto,
             'mesa' => $this->mesa,
+            'img_id' =>  $img_id
         ]);
 
         // Creamos el mensaje de exito
