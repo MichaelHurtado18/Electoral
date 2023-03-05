@@ -35,7 +35,7 @@
                         </p>
                     </div>
                     <div class="w-40">
-                        <img src="{{ $lider->imagen != '' ? asset("storage/lideres/$lider->imagen") : asset('storage/lideres/user.png') }}"
+                        <img src="{{ $lider->imagen != '' ? $lider->imagen : asset('storage/lideres/user.png') }}"
                             alt="Imagen {{ $lider->nombre }}">
                     </div>
                     <a href="{{ route('lideres.edit', $lider) }}"

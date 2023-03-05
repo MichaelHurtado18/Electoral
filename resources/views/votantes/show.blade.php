@@ -39,7 +39,7 @@
                         </p>
                     </div>
                     <div class="w-40">
-                        <img src="{{ $votante->imagen != '' ? asset("storage/votantes/$votante->imagen") : asset('storage/votantes/user.png') }}"
+                        <img src="{{ $votante->imagen != '' ? $votante->imagen : asset('storage/votantes/user.png') }}"
                             alt="Imagen {{ $votante->nombre }}">
                     </div>
                     <a href="{{ route('votantes.edit', $votante) }}"

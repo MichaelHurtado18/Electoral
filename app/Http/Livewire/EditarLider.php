@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class EditarLider extends Component
 {
@@ -26,6 +27,7 @@ class EditarLider extends Component
     public $nueva_imagen;
     public $puesto;
     public $mesa;
+    public $img_id;
 
     public function mount($lider)
     {
@@ -38,6 +40,7 @@ class EditarLider extends Component
         $this->imagen = $lider->imagen;
         $this->puesto = $lider->puesto_id;
         $this->mesa = $lider->mesa;
+        $this->img_id = $lider->img_id;
     }
 
     public function update()
@@ -47,7 +50,7 @@ class EditarLider extends Component
         $this->validate([
             'nombre' => ['required'],
             'apellido' => ['required'],
-            'email' => ['nullable','email',  Rule::unique('lideres', 'correo')->ignore($this->id_lider)],
+            'email' => ['nullable', 'email',  Rule::unique('lideres', 'correo')->ignore($this->id_lider)],
             'telefono' => 'required|digits:10',
             'cedula' => ['required', 'max:12'],
             'nueva_imagen' => ['nullable', 'image', 'max:1024'],
@@ -58,15 +61,14 @@ class EditarLider extends Component
         //     Validar si  esta cambiando la imagen
         if ($this->nueva_imagen) {
             $imagen = $this->nueva_imagen;
-            $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension(); // Le damos un nombre a la imagen
-            $img = Image::make($imagen->getRealPath())->fit(700, 700); // Recortamos la imagen
-            $img->stream();
-            Storage::disk('local')->put("public/lideres/$nombreImagen", $img); // Guardamos la imagen
+            $img = (string) Image::make($imagen->getRealPath())->fit(700, 700)->encode('data-url'); // Recortamos la imagen
+            $cloudinary =  Cloudinary::upload($img, ['folder' => 'lideres']);
 
             if ($this->imagen) {
-                Storage::delete("public/lideres/$this->imagen");    // Eliminamos la imagen anterior
+                Cloudinary::destroy($this->img_id);
             }
-            $this->imagen = $nombreImagen;
+            $this->img_id =  $cloudinary->getPublicId();
+            $this->imagen = $cloudinary->getSecurePath();
         }
 
         // Actualizamos
@@ -79,6 +81,7 @@ class EditarLider extends Component
         $lider->imagen = $this->imagen;
         $lider->puesto_id = $this->puesto;
         $lider->mesa = $this->mesa;
+        $lider->img_id = $this->img_id;
         $lider->save();
 
         // Creamos mensaje

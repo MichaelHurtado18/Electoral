@@ -6,10 +6,11 @@ use App\Models\Puestos;
 use Livewire\Component;
 use App\Models\Votantes;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class EditarVotante extends Component
 {
@@ -27,6 +28,7 @@ class EditarVotante extends Component
     public $imagen;
     public $nueva_imagen;
     public $mesa;
+    public $img_id;
 
 
     public function mount($votante)
@@ -40,6 +42,7 @@ class EditarVotante extends Component
         $this->puesto = $votante->puesto_id;
         $this->imagen = $votante->imagen;
         $this->mesa = $votante->mesa;
+        $this->img_id = $votante->img_id;
     }
 
 
@@ -50,7 +53,7 @@ class EditarVotante extends Component
         $this->validate([
             'nombre' => ['required'],
             'apellido' => ['required'],
-            'email' => ['nullable','email',  Rule::unique('votantes', 'correo')->ignore($this->id_votante)],
+            'email' => ['nullable', 'email',  Rule::unique('votantes', 'correo')->ignore($this->id_votante)],
             'telefono' => 'required|digits:10',
             'cedula' => ['required', 'max:12'],
             'puesto' => ['required', 'exists:puestos,id'],
@@ -62,16 +65,13 @@ class EditarVotante extends Component
         //     Validar si  esta cambiando la imagen
         if ($this->nueva_imagen) {
             $imagen = $this->nueva_imagen;
-            $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension(); // Le damos un nombre a la image
-            $img = Image::make($imagen->getRealPath())->fit(700, 700); // Recortamos la imagen
-            $img->stream();
-            Storage::disk('local')->put("public/votantes/$nombreImagen", $img); // Guardamos la imagen
-
+            $img  = (string) Image::make($imagen->getRealPath())->fit(700, 700)->encode('data-url'); // Recortamos la imagen
+            $cloudinary =  Cloudinary::upload($img, ['folder' => 'votantes']);
             if ($this->imagen) {
-                Storage::delete("public/votantes/$this->imagen");    // Eliminamos la imagen anterior
+                Cloudinary::destroy($this->img_id);  // Eliminamos la imagen anterior
             }
-
-            $this->imagen = $nombreImagen;
+            $this->img_id =  $cloudinary->getPublicId();
+            $this->imagen = $cloudinary->getSecurePath();
         }
         // Actualizamos
         $votante = Votantes::find($this->id_votante);
@@ -83,6 +83,7 @@ class EditarVotante extends Component
         $votante->puesto_id = $this->puesto;
         $votante->imagen = $this->imagen;
         $votante->mesa = $this->mesa;
+        $votante->img_id = $this->img_id;
         $votante->save();
 
 

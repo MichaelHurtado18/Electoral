@@ -17,7 +17,8 @@ class Votantes extends Model
         'imagen',
         'puesto_id',
         'mesa',
-        'lider_id'
+        'lider_id',
+        'img_id'
     ];
 
 

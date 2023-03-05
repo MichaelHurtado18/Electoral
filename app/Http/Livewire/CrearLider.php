@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CrearLider extends Component
 {
@@ -27,7 +28,7 @@ class CrearLider extends Component
     protected $rules = [
         'nombre' => ['required'],
         'apellido' => ['required'],
-        'email' => ['nullable','email', 'unique:lideres,correo'],
+        'email' => ['nullable', 'email', 'unique:lideres,correo'],
         'telefono' => 'required|digits:10',
         'cedula' => ['required', 'max:12'],
         'imagen' => ['nullable', 'image', 'max:1024'],
@@ -44,11 +45,10 @@ class CrearLider extends Component
         $this->validate();
         if ($this->imagen) {
             $imagen = $this->imagen;
-            $nombreImagen = Str::uuid() . '.' . $imagen->getClientOriginalExtension();
-            $this->imagen = $nombreImagen;
-            $img = Image::make($imagen->getRealPath())->fit(700, 700);
-            $img->stream();
-            Storage::disk('local')->put("public/lideres/$nombreImagen", $img);
+            $img = (string) Image::make($imagen)->fit(700, 700)->encode('data-url');
+            $cloudinary =  Cloudinary::upload($img, ['folder' => 'lideres']);
+            $this->imagen = $cloudinary->getSecurePath();
+            $img_id = $cloudinary->getPublicId();
         }
 
 
@@ -62,6 +62,8 @@ class CrearLider extends Component
             'imagen' => $this->imagen,
             'puesto_id' => $this->puesto,
             'mesa' => $this->mesa,
+            'img_id' => $img_id
+
         ]);
 
         // Creamos un mensaje de exito

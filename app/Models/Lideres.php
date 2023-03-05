@@ -16,7 +16,8 @@ class Lideres extends Model
         'cedula',
         'imagen',
         'mesa',
-        'puesto_id'
+        'puesto_id',
+        'img_id'
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
