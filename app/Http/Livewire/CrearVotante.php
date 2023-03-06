@@ -43,7 +43,7 @@ class CrearVotante extends Component
 
         // Validamos los datos
         $this->validate();
-
+        $img_id = '';
         if ($this->imagen) {
             $imagen = $this->imagen;
             $img =  (string) Image::make($imagen->getRealPath())->fit(700, 700)->encode('data-url');

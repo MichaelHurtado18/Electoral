@@ -43,6 +43,7 @@ class CrearLider extends Component
     {
 
         $this->validate();
+        $img_id = '';
         if ($this->imagen) {
             $imagen = $this->imagen;
             $img = (string) Image::make($imagen)->fit(700, 700)->encode('data-url');
