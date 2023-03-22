@@ -21,7 +21,7 @@ class MostrarPuestos extends Component
     /*ESTA FUNCION VERIFICA QUE EL PUESTO QUE EL USUARIO QUIERE ELIMINAR NO TENGA VOTANTES ASIGNADO */
     public function checkPuesto($id)
     {
-        if (Puestos::find($id)->votantes->count() > 0) {
+        if (Puestos::find($id)->votantes->count() > 0 ||  Puestos::find($id)->lideres->count() > 0) {
             // Si el puesto no se puede eliminar
             $this->emit('errorPuesto', 'NO SE PUEDE ELIMINAR ESTE PUESTO PORQUE HAY VOTANTES ASIGNADOS A EL');
             // LLama a este metodo que esta en el  SCRIPT index de puesto
