@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class ShowVotantesLideres extends Component
 {
-
     protected $listeners = ['filtrar'];
     public $termino;
     public $lider;

@@ -8,7 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <p class="text-center font-bold text-orange-500 text-xl my-2"> Hay un total de {{ $totalLideres }} Lideres y {{ $totalVotantes }} Votantes </p>
+                <p class="text-center font-bold text-orange-500 text-xl my-2"> Hay un total de {{ $totalLideres }}
+                    Lideres y {{ $totalVotantes }} Votantes </p>
                 <div class=text-gray-900 dark:text-gray-100" style="position: relative; height:80vh; width:80vw">
                     <canvas id="bar-chart"></canvas>
                 </div>
@@ -37,22 +38,22 @@
                 datasets: [{
                     label: "Cantidad de votos por puesto de votacion",
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
+                        'rgba( 252, 80, 0)',
+                        'rgba( 252, 191, 0)',
+                        'rgba( 58, 127, 18)',
+                        'rgba( 0, 31, 255)',
+                        'rgba( 178, 0, 255)',
+                        'rgba( 247, 3, 3)',
+                        'rgba( 247, 147, 3)'
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)'
+                        'rgba( 252, 80, 0)',
+                        'rgba( 252, 191, 0)',
+                        'rgba( 58, 127, 18)',
+                        'rgba( 0, 31, 255)',
+                        'rgba( 178, 0, 255)',
+                        'rgba( 247, 3, 3)',
+                        'rgba( 247, 147, 3)'
                     ],
                     data: totales
                 }]
